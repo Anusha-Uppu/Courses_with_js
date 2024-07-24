@@ -27,7 +27,20 @@ router.put('/courses:id', async(req,res)=>{
     const result= await Courses.ffindOneAndUpdate({id:req.params.id},req.body);
     res.send(result);
 })
-router.get('/course-prerequisite',async(req,res)=>{
-    
+router.get('/course-prerequisite/:name',async(req,res)=>{
+    const course=await Courses.findOne({name:req.params.name}).populate('prerequisite');
+    res.json(course);
+
+})
+router.get('/course-available/:name',async(req,res)=>{
+    const pre=await Courses.findOne({name:req.params.name});
+    if(pre==null){
+        res.send('Course is not available in the database');
+    }
+    else{
+    const id=pre.id;
+    const courses=await Courses.find({prerequisite: id});
+    res.json(courses);
+    }
 })
 module.exports=router;
