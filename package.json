@@ -1,0 +1,19 @@
+{
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "csv-parser": "^3.0.0",
+    "express": "^4.19.2",
+    "mongoose": "^8.5.1",
+    "nodemon": "^3.1.4"
+  },
+  "name": "courses_with_js",
+  "version": "1.0.0",
+  "main": "Connection.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

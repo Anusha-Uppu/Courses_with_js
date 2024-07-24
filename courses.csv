@@ -1,0 +1,9 @@
+name,level,prerequisite_name
+SSC,School,null
+MPC,Intermediate,SSC
+Bipc,Intermediate,SSC
+HEC,Intermediate,SSC
+CEC,Intermediate,SSC
+CSE,B.tech,MPC
+Civil,B.tech,MPC
+MBBS,Medicine,Bipc
