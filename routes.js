@@ -7,18 +7,39 @@ router.get('/courses',async(req,res)=>{
     res.send(result);
 })
 router.post('/courses',async(req,res)=>{
-    const vall={
-        name:req.body.name,
-        level:req.body.level,
-        prerequisite:[req.body.prerequisite]
-    }
     const ff=await Courses.findOne({name:req.body.name});
     if(ff==null){
-    const val=await Courses.create(vall);
+    console.log('Not exist so creating');
+    const val=await Courses.create({
+        name:req.body.name,
+        level:req.body.level
+    });
+    const pre=await Courses.findOne({name:req.body.prerequisite});
+    if(pre!=null){
+        val.prerequisite.push(pre.id);
+        await val.save();
+    }
+    
     res.json(val);
     }
     else{
-        res.send('Course already exist');
+        console.log(ff);
+        const pre=await Courses.findOne({name:req.body.prerequisite});
+        if(pre==null){
+            res.send('Prerequisite is not found');
+        }
+        else{
+            
+            const check=Courses.findOne({name:req.body.name,prerequisite:pre.id});
+            if(check==null){
+                ff.prerequisite.push(pre.id);
+            }
+            else{
+                res.send('Course already exist with same prerequisite');
+            }
+        }
+       
+       
     }
 
     
@@ -42,5 +63,11 @@ router.get('/course-available/:name',async(req,res)=>{
     const courses=await Courses.find({prerequisite: id});
     res.json(courses);
     }
+})
+router.delete('/courses/:name',async(req,res)=>{
+   await Courses.deleteOne({name:req.params.name}).then((result)=>{
+        res.send(result);
+   });
+   
 })
 module.exports=router;
