@@ -4,6 +4,8 @@ MPC,Intermediate,SSC
 Bipc,Intermediate,SSC
 HEC,Intermediate,SSC
 CEC,Intermediate,SSC
+Diploma_Civil,Diploma,SSC
 CSE,B.tech,MPC
 Civil,B.tech,MPC
+Civil,B.tech,Diploma_Civil
 MBBS,Medicine,Bipc

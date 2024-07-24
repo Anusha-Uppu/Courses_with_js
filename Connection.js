@@ -3,7 +3,7 @@ const mongoose=require('mongoose');
 
 async function connection(){
     try{
-    await mongoose.connect('mongodb://localhost/js11');
+    await mongoose.connect('mongodb://localhost/js19');
     console.log("Connected with the database");
     }catch(err){
         console.log(err);
